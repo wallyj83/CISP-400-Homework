@@ -13,26 +13,24 @@ integer argument indicating the number of elements to allocate. The function sho
 
 #include <iostream>
 #include <iomanip>
+#include <vector>
 using namespace std;
 
-void dynamic(int , int);
 
+vector<int> myvector;
 
-int main (void)
+int main ()
 {
-	int *iptr;
+	
     int temp;
+   
     
-    cout << " Please enter a number of ellements to create: " << endl;
+    cout << " The current size of the vector is: " << (int) myvector.size() << endl;
+    cout << " Please enter a number of ellements to create: ";
     cin >> temp;
     while(cin.get() != '\n');
-    iptr = new int[temp];
-    if (iptr == NULL)
-    {
-    	cout << " Error Allocating Memory!\n";
-    	return 5;
-    }
-    
+  	myvector.resize(temp);
+  	cout << " The current size of the vector is: " << (int) myvector.size() << endl;
     cout << " Press any key to end";
     while(cin.get() != '\n');
     return 0;
