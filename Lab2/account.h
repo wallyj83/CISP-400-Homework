@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 class Account 
@@ -14,6 +15,8 @@ private:
 		    cityStateZip,
 		    telephone_Number,
 		    date_Last_Payment;
+	
+	char 	status;
 	
 	double 	account_Balance;
 	
@@ -35,7 +38,7 @@ public:
         	place_holder = 0;
 		}  
 
-		Account(string N,string A,string C,string T,string D, double Ab) //overloaded constructor
+		Account(string N,string A,string C,string T,string D, double Ab, char x) //overloaded constructor
 		{ 
 			name=N;			
 			address=A;
@@ -44,6 +47,7 @@ public:
 			date_Last_Payment=D;
 			account_Balance=Ab;
 			place_holder = 0;
+			status = x;
 		}
 
 		bool Write (); // write Account object to file
@@ -78,7 +82,10 @@ public:
 			cout << " Please enter the date of your last payment(Month/day/Year): ";
 			getline(cin, date_Last_Payment);
 			cout << " Please enter your account balance: ";
-			getline(cin, account_Balance);
+			// getline(cin, account_Balance); no matching function for call to ‘getline(std::istream&, double&)’
+			cin >> account_Balance;
+			cout << " Do you want to enter another record ?(y/n): ";
+			cin >> status;
 			return;
 		}
 
@@ -94,6 +101,14 @@ public:
 			return;
 			
 		}
+		
+		char statusre()
+		{
+		char b;
+		b=status;
+		return b;
+		}
+		
 };
 
 #endif

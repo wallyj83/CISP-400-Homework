@@ -13,11 +13,8 @@ $(EXENAME): main.o account_read.o account_write.o
 main.o: main.cpp account.h
 	$(CC) -c main.cpp
 
-account_read.o: account_read.cpp account.h
-	$(CC) -c account_read.cpp
-
-account_write.o: account_write.cpp account.h
-	$(CC) -c account_write.cpp
+account_read.o: account_readwrite.cpp account.h
+	$(CC) -c account_readwrite.cpp
 
 clean:
 	rm -rf *.o
