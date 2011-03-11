@@ -15,7 +15,7 @@ int main()
   	string tempWord;
   	string line;
   	size_t found;
-  	int intf, wordl, tempWl;
+  	int intf, wordl;
   	
   	
   	cout << "Please enter the name of a file: ";
@@ -27,7 +27,9 @@ int main()
  	
    	
    	
-   	ifstream fin(filename.c_str());
+   	fstream fin(filename.c_str(), ios::in|ios::out);
+   
+   //ofstream fintemp(filename.c_str(),ios::app);
   	streampos currentPosition = fin.tellg(); //unsigned long int
   	vector<streampos> linePositions;
  
@@ -56,28 +58,34 @@ int main()
   	{
     	fin.seekg(*itr);
     	getline(fin, line);
-    	fin.close();
-    	
-    	while(line.find(tempWord)!=string::npos)
+    	found = line.find(word);
+    	cout << line << endl;
+    	while(found!=string::npos)
     		{
-    		found = line.find(tempWord);
     		intf=found;
     		wordl=word.size();
-    		tempWl=tempWord.size();
-    		
-    		ofstream fintemp;
-    		fintemp.open (filename.c_str());
-    		fintemp.seekp(*itr);    		
-    		line.replace(intf, wordl,tempWord,tempWl);
-    		
-    		
+    		line.replace(intf, wordl,tempWord);
+    		found = line.find(word, found +1);
     		}
-    	//fin.seekp(*itr);
-    	//fin.write(line, line.size());
+    	cout << line << endl;
+    	//fin.close();
+    	//if (fin.is_open())
+  			//{
+    		//	cout << "error closeing file" << endl;
+ 			//}
+  			//else
+ 			//{
+   			 //	cout << "File Closed" << endl;
+  			//}
+
     	
-    	//cout << line << "\n";
+    	fin.seekp(*itr);
+    	//cout << *itr << endl;
+    	fin.write(line.c_str(), line.size());
+    	//fintemp.close();	
+    	//ifstream fin(filename.c_str());
   	}
-  
+  	fin.close();
  
   return 0;
 }
