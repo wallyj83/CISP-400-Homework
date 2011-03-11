@@ -7,6 +7,7 @@
 #include <vector>
 #include <iostream>
 using namespace std;
+
 int main()
 {
   	string filename;
@@ -14,6 +15,8 @@ int main()
   	string tempWord;
   	string line;
   	size_t found;
+  	int intf, wordl, tempWl;
+  	
   	
   	cout << "Please enter the name of a file: ";
   	cin >> filename;
@@ -22,6 +25,7 @@ int main()
 	cout << "Please enter the word you would like to replace it with: ";
 	cin >> tempWord;
  	
+   	
    	
    	ifstream fin(filename.c_str());
   	streampos currentPosition = fin.tellg(); //unsigned long int
@@ -52,10 +56,26 @@ int main()
   	{
     	fin.seekg(*itr);
     	getline(fin, line);
-    	while(line.find(tempWord)!=string::npos)
-    	found = line.find(tempWord);
+    	fin.close();
     	
-    	cout << line << "\n";
+    	while(line.find(tempWord)!=string::npos)
+    		{
+    		found = line.find(tempWord);
+    		intf=found;
+    		wordl=word.size();
+    		tempWl=tempWord.size();
+    		
+    		ofstream fintemp;
+    		fintemp.open (filename.c_str());
+    		fintemp.seekp(*itr);    		
+    		line.replace(intf, wordl,tempWord,tempWl);
+    		
+    		
+    		}
+    	//fin.seekp(*itr);
+    	//fin.write(line, line.size());
+    	
+    	//cout << line << "\n";
   	}
   
  
