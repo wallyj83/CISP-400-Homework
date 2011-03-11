@@ -1,6 +1,11 @@
 // randomAccess.cpp 
 // Asks user for a filename and word.  It then displays the number of 
 //  lines containing the word and then displays each line. 
+//  CISP 400
+//  Group 2 Joshua Parker-Roriz, Devon Bonanno, Daniel Nakashima
+//  random.cpp
+//  Team Assignment random.cpp
+
 
 #include <fstream>
 #include <string>
@@ -15,7 +20,7 @@ int main()
   	string tempWord;
   	string line;
   	size_t found;
-  	int intf, wordl;
+  	
   	
   	
   	cout << "Please enter the name of a file: ";
@@ -46,13 +51,6 @@ int main()
   	//  to read past the end of the file. 
   	fin.clear();
   
-  	
-  	
-  	
-  	
-  	//cout << "There are " << linePositions.size() << " lines containing "
-    //<< word << ".\nThey are:\n";
- 
    	vector<streampos>::iterator itr;
   	for(itr = linePositions.begin(); itr!=linePositions.end(); ++itr) 
   	{
@@ -62,28 +60,11 @@ int main()
     	cout << line << endl;
     	while(found!=string::npos)
     		{
-    		intf=found;
-    		wordl=word.size();
-    		line.replace(intf, wordl,tempWord);
+    		line.replace(found, word.size(),tempWord);
     		found = line.find(word, found +1);
     		}
-    	cout << line << endl;
-    	//fin.close();
-    	//if (fin.is_open())
-  			//{
-    		//	cout << "error closeing file" << endl;
- 			//}
-  			//else
- 			//{
-   			 //	cout << "File Closed" << endl;
-  			//}
-
-    	
     	fin.seekp(*itr);
-    	//cout << *itr << endl;
     	fin.write(line.c_str(), line.size());
-    	//fintemp.close();	
-    	//ifstream fin(filename.c_str());
   	}
   	fin.close();
  
