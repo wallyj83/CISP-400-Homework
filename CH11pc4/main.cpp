@@ -19,3 +19,41 @@ entered, be sure the user enters data for all the fields.
 No negative account balances should be entered.
 
 */
+
+#include <iostream>
+#include <iomanip>
+#include <vector>
+#include <string>
+using namespace std;
+
+class custAccounts
+{
+private:
+
+string 	custName,
+		custStadd,
+		custCSZ,
+		custPhone,
+		custLastPay;
+		
+float 	custAcctBal;
+	
+
+
+public:
+
+custAccounts()
+	{
+	
+	custName = '\0';
+	custStadd = '\0';
+	custCSZ = '\0';
+	custPhone = '\0';
+	custLastPay = '\0';
+	custAcctBal = 0;
+	
+	}
+
+
+
+}

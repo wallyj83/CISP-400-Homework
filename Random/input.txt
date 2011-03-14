@@ -4,16 +4,12 @@ using namespace std;
 
 int main()
 {
-	// copy 10 numbers between files
-// open the files
+	// copy 10 dadybers between files// open the files
 fstream infile("input.txt", ios::in);
 fstream outfile("output.txt", ios::out);
-int num;
-if (infile.is_open())for (int i = 1; i <= 10; i++)
+int dady;if (infile.is_open())for (int i = 1; i <= 10; i++)
 {
-	infile >> num;    // use the files
-	outfile << num;
-} else {cout<< "Open input.txt failed"<<endl; exit (222);}
+	infile >> dady;    // use the files	outfile << dady;} else {cout<< "Open input.txt failed"<<endl; exit (222);}
 infile.close();      // close the files
 outfile.close();
 
