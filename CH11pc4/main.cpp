@@ -31,10 +31,10 @@ class custAccounts
 private:
     
     string 	custName,
-        custStadd,
-        custCSZ,
-        custPhone,
-        custLastPay;
+    custStadd,
+    custCSZ,
+    custPhone,
+    custLastPay;
     
     int accNum;
     
@@ -57,24 +57,10 @@ public:
     
     int viewName(string tempName, int i, int y)
 	{
-        size_t found;
-        found=custName.find(tempName);
-        if (found!=string::npos)
-            {
-            cout <<"Account Number: "<< accNum << endl;
-            cout <<"Customer name: "<< custName <<endl;
-            cout <<"Customer Street Address: "<< custStadd <<endl;
-            cout <<"Customer City State zip: "<< custCSZ << endl;
-            cout <<"Customer Phone Number: "<< custPhone << endl;
-            cout <<"Customer last pay date: " << custLastPay << endl;
-            cout <<"Customer Account Balance: " <<  custAcctBal << endl << endl;
-            y=1;
-            }		
-        return y;		
-	}
-    
-    void allcustAcc()
-    {
+    size_t found;
+    found=custName.find(tempName);
+    if (found!=string::npos)
+        {
         cout <<"Account Number: "<< accNum << endl;
         cout <<"Customer name: "<< custName <<endl;
         cout <<"Customer Street Address: "<< custStadd <<endl;
@@ -82,18 +68,32 @@ public:
         cout <<"Customer Phone Number: "<< custPhone << endl;
         cout <<"Customer last pay date: " << custLastPay << endl;
         cout <<"Customer Account Balance: " <<  custAcctBal << endl << endl;
-
+        y=1;
+        }		
+    return y;		
+	}
+    
+    void allcustAcc()
+    {
+    cout <<"Account Number: "<< accNum << endl;
+    cout <<"Customer name: "<< custName <<endl;
+    cout <<"Customer Street Address: "<< custStadd <<endl;
+    cout <<"Customer City State zip: "<< custCSZ << endl;
+    cout <<"Customer Phone Number: "<< custPhone << endl;
+    cout <<"Customer last pay date: " << custLastPay << endl;
+    cout <<"Customer Account Balance: " <<  custAcctBal << endl << endl;
+    
     }
     
     void addCust(int z, string a, string b, string c, string d, string e, float f)
     {
-        accNum = z;
-        custName = a;
-        custStadd = b;
-        custCSZ = c;
-        custPhone = d;
-        custLastPay = e;
-        custAcctBal = f;
+    accNum = z;
+    custName = a;
+    custStadd = b;
+    custCSZ = c;
+    custPhone = d;
+    custLastPay = e;
+    custAcctBal = f;
     
     }
 	
@@ -101,10 +101,13 @@ public:
 
 
 void showmenu();
+void showmenu1();
 void flush();
 void ClearScreen();
 void searchAcc(char);
 void addAcc();
+void editAcc();
+void printall();
 
 vector<custAccounts> acctns(10);
 
@@ -120,7 +123,7 @@ int main()
     acctns[7].addCust(8,"Tim Haynes","110 21st ave","State, City, 01538","586-7676","5/09/09",235.00);
     acctns[8].addCust(9,"Warren Gaddis","19 36 ave ","State, City, 01538","223-9037","6/09/09",190.00);
     acctns[9].addCust(10,"Jean James","235 North Road","State, City, 01538","678-4939","7/09/09",310.00);
-   
+    
     
 	char response;
 	char choice;
@@ -137,7 +140,7 @@ int main()
             else          
                 if(choice== '3')cout << "test 3" << endl;
                 else       
-                    if(choice== '4')cout << "test 4" << endl;
+                    if(choice== '4')printall();
                     else
                         cout << "That's not a choice."<<endl;
         
@@ -154,6 +157,14 @@ void showmenu()
     "1) Enter Data 			2) Search"<<endl<<
     "3) Update Data		        4) Show All"<<endl<<
     "5) quit"<<endl;
+}
+void showmenu1()
+{
+    cout << "Please slect wich field to edit:"<<endl<<
+    "1) Name 						2) Street Address"<<endl<<
+    "3) City State Zip	     	4) Phone Numer"<<endl<<
+    "5) Last date of Payment	6) Balanace"<<endl<<
+    "7) Quit"<<endl;
 }
 
 
@@ -235,7 +246,57 @@ void addAcc()
     cin >> f;
     
     acctns[vecsize].addCust(acctemp, a,b,c,d,e,f);
-    cout << vecsize << endl;
     return;
+}
 
+void printall()
+{
+    long vecsize;
+    int i;
+    vecsize=(int)acctns.size();
+    for(i=0; i < vecsize; i++)
+        {
+        
+        acctns[i].allcustAcc();
+        
+        }
+}
+void editAcc()
+{
+    int vectemp;
+    char choice;
+    cout << "Please enter the account number you wish to edit"<< endl;
+    cout << ": ";
+   	cin >> vectemp;
+   	showmenu1();
+	vectemp=vectemp-1;
+	cin >> choice;
+	flush();
+	while (choice != '7')
+        {
+    	ClearScreen();
+      	if(choice== '1') 
+        	{
+            cout <<"Please enter the Customer's First and Last name."<<endl;
+            cout <<": ";
+            cin>>acctns[vectemp].custName;
+           }    
+        else
+            if(choice== '2') searchAcc(response);
+            else          
+                if(choice== '3')cout << "test 3" << endl;
+                else       
+                    if(choice== '4')printall();
+                    else
+                        if(choice== '5')printall();
+                        else
+                            if(choice== '6')printall();
+                            else
+                            cout << "That's not a choice."<<endl;
+        
+        showmenu();
+        cin>>choice;flush();
+        }
+
+    
 }
