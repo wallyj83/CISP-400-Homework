@@ -96,6 +96,12 @@ public:
     custAcctBal = f;
     
     }
+    void setName(string N){custName = N;}
+    void setAddress(string A){custStadd=A;}
+    void setCSZ(string C){custCSZ=C;}
+    void setPhone(string P){custPhone=P;}
+    void setPaymentDate(string D){custLastPay=D;};
+    void setBalance(float B){custAcctBal=B;}
 	
 };
 
@@ -138,7 +144,7 @@ int main()
         else
             if(choice== '2') searchAcc(response);
             else          
-                if(choice== '3')cout << "test 3" << endl;
+                if(choice== '3')editAcc();
                 else       
                     if(choice== '4')printall();
                     else
@@ -161,10 +167,10 @@ void showmenu()
 void showmenu1()
 {
     cout << "Please slect wich field to edit:"<<endl<<
-    "1) Name 						2) Street Address"<<endl<<
-    "3) City State Zip	     	4) Phone Numer"<<endl<<
-    "5) Last date of Payment	6) Balanace"<<endl<<
-    "7) Quit"<<endl;
+    "1) Name				2) Street Address"<<endl<<
+    "3) City State Zip		4) Phone Numer"<<endl<<
+    "5) Last date of Payment		6) Balanace"<<endl<<
+    "7) Return"<<endl;
 }
 
 
@@ -265,6 +271,9 @@ void editAcc()
 {
     int vectemp;
     char choice;
+    string tempName, tempAdd, tempCSZ, tempPhone, tempLdate;
+    float tempBal;
+    
     cout << "Please enter the account number you wish to edit"<< endl;
     cout << ": ";
    	cin >> vectemp;
@@ -279,24 +288,54 @@ void editAcc()
         	{
             cout <<"Please enter the Customer's First and Last name."<<endl;
             cout <<": ";
-            cin>>acctns[vectemp].custName;
-           }    
+            getline(cin, tempName);
+            acctns[vectemp].setName(tempName);
+            }    
         else
-            if(choice== '2') searchAcc(response);
+            if(choice== '2') 
+                {
+                cout <<"Please enter the Customer's Street Address."<<endl;
+                cout <<": ";
+                getline(cin, tempAdd);
+                acctns[vectemp].setCSZ(tempAdd);
+                }  
             else          
-                if(choice== '3')cout << "test 3" << endl;
+                if(choice== '3')
+                    {
+                    cout <<"Please enter the Customer's City State Zip."<<endl;
+                    cout <<": ";
+                    getline(cin, tempCSZ);
+                    acctns[vectemp].setAddress(tempCSZ);
+                    }  
                 else       
-                    if(choice== '4')printall();
+                    if(choice== '4')
+                        {
+                        cout <<"Please enter the Customer's Phone Numver"<<endl;
+                        cout <<": ";
+                        getline(cin, tempPhone);
+                        acctns[vectemp].setPhone(tempPhone);
+                        }  
                     else
-                        if(choice== '5')printall();
+                        if(choice== '5')
+                            {
+                            cout <<"Please enter the date of last payment."<<endl;
+                            cout <<": ";
+                            getline(cin,tempLdate);
+                            acctns[vectemp].setPaymentDate(tempLdate);
+                            }  
                         else
-                            if(choice== '6')printall();
+                            if(choice== '6'){
+                                cout <<"Please enter the Customer's Balanace"<<endl;
+                                cout <<": ";
+                                cin >> tempBal;
+                                acctns[vectemp].setBalance(tempBal);
+                            }  
                             else
-                            cout << "That's not a choice."<<endl;
+                                cout << "That's not a choice."<<endl;
         
-        showmenu();
+        showmenu1();
         cin>>choice;flush();
         }
-
+    
     
 }
