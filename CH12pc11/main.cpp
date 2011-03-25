@@ -1,4 +1,4 @@
-//
+    //
 /*
  11. Inventory Program
  Write a program that uses a class to store 
@@ -41,14 +41,14 @@ private:
 public:
     inventory()
     {
-    	itemDesc='\0';
-    	itemDay = 0;
-    	itemNum = 0;
-  	  	itemMonth=0;
-   		itemYear = 0;
-    	itemQuant=0;
-    	itemRcost=0;
-    	itemWcost=0;
+    itemDesc='\0';
+    itemDay = 0;
+    itemNum = 0;
+    itemMonth=0;
+    itemYear = 0;
+    itemQuant=0;
+    itemRcost=0;
+    itemWcost=0;
     }
     void addItem(string a, int b, float c, float d, short int e, short int f, short int g, int h)
     {
@@ -94,7 +94,7 @@ void addRec();
 void showmenu();
 void showmenu1();
 void flush();
-void clearScreen();
+void clear();
 
 vector<inventory> items(1);
 
@@ -109,7 +109,7 @@ int main()
 	flush();
 	while (choice != '5')
         {
-    	clearScreen();
+    	clear();
       	if(choice== '1') addRec();
         else
             if(choice== '2') displayItem();
@@ -135,7 +135,8 @@ void flush()
 
 void Clear()
 {
-    system("clear");//linux
+    system("clear");
+  
 }
 
 void showmenu()
@@ -190,25 +191,25 @@ void addRec()
         cout << ": ";
         cin >> f;
         }
-
+    
     cout<<"Please enter the date added to inventory(dd/MM/YY)"<<endl;
     cout<<": ";
     cin >> b;
     if(itemvalidDate(b, vecsize))
-       {
-       }
-    	
-       else
-    {
-       cout<<"That is not a valid date, please enter a valid date (dd/MM/YY)"<<endl;
-       cout<<": "<<endl;
-       cin >> b;
-       }
+        {
+        }
+    
+    else
+        {
+        cout<<"That is not a valid date, please enter a valid date (dd/MM/YY)"<<endl;
+        cout<<": "<<endl;
+        cin >> b;
+        }
     
     
 }
 
-void checkDate(string b, int vecsize)
+void checkDate(string b, long vecsize)
 {
     
     char month[3],
@@ -230,7 +231,7 @@ void checkDate(string b, int vecsize)
     items[vecsize].setItemDay(atoi(day));
     items[vecsize].setItemMonth(atoi(month));
     items[vecsize].setItemYear(atoi(year));
-
+    
 }
 
 char * Strchcpy(char * target, char * source, int ch)
@@ -248,45 +249,45 @@ char * Strchcpy(char * target, char * source, int ch)
     
 }
 
-bool  itemvalidDate(string b, int vecsize)
+bool  itemvalidDate(string b, long vecsize)
 {
     checkDate(b, vecsize);
-    long int tempMonth, tempDay, tempYear;
-    tempMonth =(long int)items[vecsize].getItemMonth();
-    tempDay = (long int)items[vecsize].getItemDay();
-    tempYear = (long int)items[vecsize].getItemYear();
+    short int tempMonth, tempDay, tempYear;
+    tempMonth =items[vecsize].getItemMonth();
+    tempDay = items[vecsize].getItemDay();
+    tempYear =items[vecsize].getItemYear();
     
-int ny_days [13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-int ly_days [13] = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-        if (tempMonth > 0 && tempMonth < 13)
-        	if (tempDay > 0 && tempDay < 32 )
-            	if (tempYear < 80)
-                	if (tempYear % 4 == 0)
-                    	{
-      					if (tempDay <= ly_days[tempMonth])
-                      	  return 1;
-                    	}
-                	else 
-                   	 	{
-  						if (tempDay <= ny_days[tempMonth])
-                        	return 1;
-                   		}
+    int ny_days [13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int ly_days [13] = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    if (tempMonth > 0 && tempMonth < 13)
+        if (tempDay > 0 && tempDay < 32 )
+            if (tempYear < 80)
+                if (tempYear % 4 == 0)
+                    {
+                    if (tempDay <= ly_days[tempMonth])
+                        return 1;
+                    }
+                else 
+                    {
+                    if (tempDay <= ny_days[tempMonth])
+                        return 1;
+                    }
     
             	else
                     return 0;
-        else 
+                else 
                     return 0;
-        else 
+                else 
                     return 0;
     
 }
 
 bool checkamount(float a)
 {
-   if(a>= 0)
-       {
-       return 0;
-       }
+    if(a>= 0)
+        {
+        return 0;
+        }
     else
         {
         return 1;
